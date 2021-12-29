@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppRootStateType} from "../../n1-main/m2-bll/store";
 import {useParams} from "react-router-dom";
 import ContainerAuth from "../../n1-main/m1-ui/common/c4-containerAuth";
+import Button from '@material-ui/core/Button/Button';
 
 
 const Learn = () => {
@@ -51,6 +52,7 @@ const Learn = () => {
             setIsChecked(false)
         }
     }
+
     const onCheck = () => {
         setIsChecked(!isChecked)
     }
@@ -66,40 +68,60 @@ const Learn = () => {
                 !isChecked ? (
                     <>
                         <div className={styles.text}>Question: {card.question}</div>
-                        <div>
-                            <button onClick={onCheck}>check</button>
-                        </div>
                     </>
                 ) : (
                     <>
                         <div className={styles.text}>Answer: {card.answer}</div>
-                        <div>
-                            <button onClick={onCheck}>Back to the question</button>
-                        </div>
-                        <div>
+                        <div className={styles.answerButtons}>
                             {rating.map((g, i) => (
-                                <button disabled={g.value === valueGrade}
+                                <Button disabled={g.value === valueGrade}
                                         key={'grade-' + i}
-                                        onClick={() => {setValueGrade(g.value)}}
+                                        onClick={() => {
+                                            setValueGrade(g.value)
+                                        }}
+                                        style={{
+                                            background: `${valueGrade === g.value ? 'green' : '#21268F'}`,
+                                            color: '#fff',
+                                            height: '40px',
+                                            width: '140px'
+                                        }}
                                 >
                                     {g.name}
-                                </button>
+                                </Button>
                             ))}
                         </div>
 
                     </>
                 )
             }
-            <div>
-                <button onClick={() => {
-                    onNext()
-                    rateCard(valueGrade, card._id)
-                    setValueGrade(0)
-                }
-                }>Next question
-                </button>
+            <div className={styles.actionButtons}>
+                <div>
+                    {!isChecked ? <Button onClick={onCheck} style={{
+                        background: '#21268F',
+                        color: '#fff',
+                        height: '40px',
+                        width: '150px'
+                    }}>check</Button> : <Button style={{
+                        background: '#D7D8EF',
+                        color: '#21268F',
+                        padding: '10px'
+                    }} onClick={onCheck}>Back to the question</Button>}
+                </div>
+                <div>
+                    <Button style={{
+                        background: '#D7D8EF',
+                        color: '#21268F',
+                        height: '40px',
+                        width: '150px'
+                    }} onClick={() => {
+                        onNext()
+                        rateCard(valueGrade, card._id)
+                        setValueGrade(0)
+                    }
+                    }>Next question
+                    </Button>
+                </div>
             </div>
-
         </div>
 
     </ContainerAuth>

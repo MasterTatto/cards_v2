@@ -22,6 +22,7 @@ const TableCards = () => {
     const [openModal, setOpenModal] = useState(false)
     const [type, setType] = useState<ModalTypeAction>('')
     const [cardID, setCardID] = useState('')
+    const [answer, setAnswer] = useState('')
 
     useEffect(() => {
         const scrollContainer = document.querySelectorAll("#table");
@@ -72,7 +73,8 @@ const TableCards = () => {
 
     return (
         <table className={styles.table}>
-            <Modal openModal={openModal} setOpenModal={setOpenModal} setActionTC={updateCardPack} type={type}/>
+            <Modal openModal={openModal} setOpenModal={setOpenModal} setActionTC={updateCardPack} type={type}
+                   answer={answer}/>
             <thead className={styles.thead}>
 
             {header.map(headerGroup => (
@@ -108,6 +110,12 @@ const TableCards = () => {
                                           onClick={buttonHandler.bind(null, row._id, 'editItem')}>Edit</span>
                                 </>)
                                 }
+                                <span className={styles.btn}
+                                      onClick={() => {
+                                          setType('answer')
+                                          setAnswer(row.answer)
+                                          setOpenModal(true)
+                                      }}>Answer</span>
                             </div>
 
                         </td>
