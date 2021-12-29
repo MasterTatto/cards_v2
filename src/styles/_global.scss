@@ -1,0 +1,74 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+input, button, textarea {
+  font-family: inherit;
+  outline: none;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+body {
+  background: linear-gradient(180deg, #E6D4DE 0%, #9890C7 100%);
+  min-height: 100vh;
+
+  ::-webkit-scrollbar {
+    height: 5px;
+    width: 6px;
+    background: #ECECF9;
+  }
+
+  ::-webkit-scrollbar-thumb:horizontal {
+    background: #8865c0;
+    border-radius: 20px;
+  }
+
+  ::-webkit-scrollbar-thumb:vertical {
+    background: #8865c0;
+    border-radius: 20px;
+  }
+}
